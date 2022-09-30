@@ -1,74 +1,83 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
-import person from "./Person/Person";
 import Person from "./Person/Person";
 
-function App(props) {
-  const [personsState, setPersonsState] = useState({
+class App extends Component {
+  state = {
     persons: [
       { name: "max", age: 28 },
       { name: "manu", age: 27 },
       { name: "henry", age: 22 },
     ],
     showPersons: false,
-  });
+  };
 
-  const switchNameHandler = () => {
-    setPersonsState((prevState) => ({
-      ...prevState,
+  switchNameHandler = (newName) => {
+    this.setState({
       persons: [
-        { name: "mars", age: 22 },
+        { name: newName, age: 22 },
         { name: "rock", age: 23 },
         { name: "duke", age: 44 },
       ],
-    }));
+    });
   };
-
-  const nameChangedHandler = (event) => {
-    setPersonsState((prevState) => ({
-      ...prevState,
+  nameChangedHandler = (event) => {
+    this.setState({
       persons: [
         { name: "mars", age: 22 },
         { name: event.target.value, age: 23 },
         { name: "duke", age: 44 },
-      ],
-    }));
+      ]
+      
+    });
   };
 
-  const tooglePersonsHandler = () => {
-    const doesShow = personsState.showPersons;
-    setPersonsState((prevState) => ({
-      ...prevState,
-      showPersons: !doesShow,
-    }));
-  };
+   tooglePersonsHandler = () => {
+      const doesShow = this.state.showPersons;
+      this.setState({showPersons:!doesShow})
+    };
+  render() {
+    const btnStyle ={
+      width:'50%',
+      backgroundColor: 'Orange',
+      border: '2px solid #fefefe',
+      fontSize : '20pt',
+      padding : '18px',
+      marginBottom : '10px'
+    }
 
-  return (
-    <div className="App">
-      <h1> Hi, I'm a react App.</h1>
-      <button onClick={tooglePersonsHandler}>Switch</button>
-      {personsState.showPersons === true ? (
-        <div>
+    return (
+      <div className="App">
+        <h1> Hi, I'm a react App.</h1>
+
+
+        <button 
+        style={btnStyle}
+        onClick={this.tooglePersonsHandler}>Toggle Handler Button</button>
+
+        { this.state.showPersons ?
+          <div>
           <Person
-            name={personsState.persons[0].name}
-            age={personsState.persons[0].age}
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
           >
             I'm feeling good!
           </Person>
           <Person
-            name={personsState.persons[1].name}
-            click={switchNameHandler}
-            age={personsState.persons[1].age}
-            change={nameChangedHandler}
+            name={this.state.persons[1].name}
+            click={() =>this.switchNameHandler('Maximisldjflisd')}
+            age={this.state.persons[1].age}
+            change={this.nameChangedHandler}
           />
           <Person
-            name={personsState.persons[2].name}
-            age={personsState.persons[2].age}
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
           />
-        </div>
-      ) : null}
-    </div>
-  );
+        </div> :null
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
