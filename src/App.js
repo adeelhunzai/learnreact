@@ -14,35 +14,33 @@ function App(props) {
   });
 
   const switchNameHandler = () => {
-    setPersonsState({
+    setPersonsState((prevState) => ({
+      ...prevState,
       persons: [
         { name: "mars", age: 22 },
         { name: "rock", age: 23 },
         { name: "duke", age: 44 },
       ],
-    });
+    }));
   };
 
   const nameChangedHandler = (event) => {
-    setPersonsState({
+    setPersonsState((prevState) => ({
+      ...prevState,
       persons: [
         { name: "mars", age: 22 },
         { name: event.target.value, age: 23 },
         { name: "duke", age: 44 },
       ],
-    });
+    }));
   };
 
   const tooglePersonsHandler = () => {
     const doesShow = personsState.showPersons;
-    setPersonsState({
-      persons: [
-        { name: "mars", age: 22 },
-        { name: "evans", age: 23 },
-        { name: "duke", age: 44 },
-      ],
+    setPersonsState((prevState) => ({
+      ...prevState,
       showPersons: !doesShow,
-    });
+    }));
   };
 
   return (
