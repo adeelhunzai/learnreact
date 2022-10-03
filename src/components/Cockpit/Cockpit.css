@@ -1,0 +1,8 @@
+.Cockpit button {
+    width: 50%;
+    background-color: green;
+    border: 2px solid #fefefe;
+    font-size: 20pt;
+    padding: 18px;
+    margin-bottom: 10px;
+  }
