@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "../components/Persons/Person/Person";
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -22,7 +23,6 @@ class App extends Component {
 
     person.name = event.target.value;
 
-
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
@@ -41,42 +41,20 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
   render() {
-    const btnStyle = {
-      width: "50%",
-      backgroundColor: "green",
-      border: "2px solid #fefefe",
-      fontSize: "20pt",
-      padding: "18px",
-      marginBottom: "10px",
-    };
-
     let person = null;
     if (this.state.showPersons) {
       person = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangedHandler(event, person.id)}
-              />
-            );
-          })}
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
-      btnStyle.backgroundColor = "red";
     }
 
     return (
       <div className="App">
-        <h1> Hi, I'm a react App.</h1>
-
-        <button style={btnStyle} onClick={this.tooglePersonsHandler}>
-          Toggle Handler Button
-        </button>
+        <Cockpit clicked={this.tooglePersonsHandler} />
         {person}
       </div>
     );
