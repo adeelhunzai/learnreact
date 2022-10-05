@@ -48,7 +48,7 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
-  tooglePersonsHandler = () => {
+  togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow });
   };
@@ -56,18 +56,18 @@ class App extends Component {
     console.log('[App.js Render Method');
     let person = null;
     if (this.state.showPersons) {
-      person = (
-        <Persons
+      person =  <Persons
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler}
-        />
-      );
+          changed={this.nameChangedHandler} />;
     }
 
     return (
       <div className="App">
-        <Cockpit clicked={this.tooglePersonsHandler} />
+        <Cockpit persons={this.state.showPersons}
+                 clicked = {this.togglePersonsHandler}
+       
+        />
         {person}
       </div>
     );

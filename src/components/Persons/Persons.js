@@ -12,6 +12,7 @@ class Persons extends Component {
         }
         getSnapshotBeforeUpdate(prevProps, prevState){
             console.log('[Persons.js] getSnapshotBeforeUpdate');
+            return null;
         }
         componentDidUpdate(){
             console.log('[Persons.js] component did update');
