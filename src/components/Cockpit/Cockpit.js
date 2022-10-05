@@ -7,7 +7,7 @@ const Cockpit = (props) => {
     setTimeout(()=>{
       alert('Saved Data to the Cloud!');
     },1000);
-  },[props.persons])
+  },[])
   return (
     <div className="Cockpit">
       <h1> Hi, I'm a react App.</h1>
