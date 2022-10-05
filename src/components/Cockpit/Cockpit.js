@@ -3,8 +3,11 @@ import "./Cockpit.css";
 
 const Cockpit = (props) => {
   useEffect(()=> {
-    console.log("[cockpit.js] UseEffect")
-  })
+    console.log("[cockpit.js] UseEffect");
+    setTimeout(()=>{
+      alert('Saved Data to the Cloud!');
+    },1000);
+  },[props.persons])
   return (
     <div className="Cockpit">
       <h1> Hi, I'm a react App.</h1>
