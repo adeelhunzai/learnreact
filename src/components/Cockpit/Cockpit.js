@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect} from "react";
 import "./Cockpit.css";
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+  useEffect(()=> {
+    console.log("[cockpit.js] UseEffect")
+  })
   return (
     <div className="Cockpit">
       <h1> Hi, I'm a react App.</h1>
@@ -10,4 +13,4 @@ const cockpit = (props) => {
     </div>
   );
 };
-export default cockpit;
+export default Cockpit;
