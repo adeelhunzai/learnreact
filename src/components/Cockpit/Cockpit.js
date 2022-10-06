@@ -7,7 +7,16 @@ const Cockpit = (props) => {
     setTimeout(()=>{
       alert('Saved Data to the Cloud!');
     },1000);
-  },[])
+    return() =>{
+      console.log('[Cockpit.js] cleaning work in effect');
+    }
+  },[]);
+  useEffect(()=> {
+    console.log('[Cockpit.js] 2nd useEffect');
+    return ()=> {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+    }
+  })
   return (
     <div className="Cockpit">
       <h1> Hi, I'm a react App.</h1>
@@ -16,4 +25,4 @@ const Cockpit = (props) => {
     </div>
   );
 };
-export default Cockpit;
+export default React.memo(Cockpit);
